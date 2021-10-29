@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController {
     @Autowired
     private Greeter greeter;
+    @Autowired
+    private AsyncService asyncService;
 
     @GetMapping("/greetings")
     public String greeting() {
         return greeter.greet();
+    }
+
+    @GetMapping("/launch")
+    public String launch() {
+        asyncService.launch();
+        return "launched";
     }
 }
